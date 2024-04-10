@@ -22,15 +22,4 @@ def pascal_triangle(n):
                 line.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
         triangle.append(line)  # Add the completed row to the triangle
     
-    return triangle  # Return the completed Pascal's Triangle
-
-# Test the function with the provided main code
-def print_triangle(triangle):
-    '''Prints the Pascal's Triangle in a formatted manner.
-    '''
-    for row in triangle:
-        print("[{}]".format(",".join(map(str, row))))
-
-if __name__ == "__main__":
-    # Test printing Pascal's Triangle up to the 5th row
-    print_triangle(pascal_triangle(5))
+    return triangle
