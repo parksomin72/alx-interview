@@ -1,16 +1,38 @@
+#!/usr/bin/python3
+'''The minimum operations coding challenge.
+'''
+
+
 def minOperations(n):
-    if n <= 1:
+    '''Computes the fewest number of operations needed to result
+    in exactly n H characters.
+    '''
+    if not isinstance(n, int) or n <= 0:
         return 0
     
-    # Initialize variables
-    operations = 0
-    divisor = 2
+    ops_count = 0
+    clipboard = 0
+    done = 1
     
-    while n > 1:
-        if n % divisor == 0:
-            n //= divisor
-            operations += divisor
-        else:
-            divisor += 1
+    while done < n:
+        if clipboard == 0:
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+        elif n - done > 0 and (n - done) % done == 0:
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+        elif clipboard > 0:
+            done += clipboard
+            ops_count += 1
     
-    return operations
+    return ops_count
+
+# Testing the function
+if __name__ == "__main__":
+    n = 4
+    print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
+
+    n = 12
+    print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
