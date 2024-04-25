@@ -1,38 +1,25 @@
 #!/usr/bin/python3
-'''The minimum operations coding challenge.
-'''
+""" Module for 0-minoperations"""
 
 
 def minOperations(n):
-    '''Computes the fewest number of operations needed to result
-    in exactly n H characters.
-    '''
-    if not isinstance(n, int) or n <= 0:
+    """
+    minOperations
+    Gets fewest # of operations needed to result in exactly n H characters
+    """
+    # all outputs should be at least 2 char: (min, Copy All => Paste)
+    if (n < 2):
         return 0
-    
-    ops_count = 0
-    clipboard = 0
-    done = 1
-    
-    while done < n:
-        if clipboard == 0:
-            clipboard = done
-            done += clipboard
-            ops_count += 2
-        elif n - done > 0 and (n - done) % done == 0:
-            clipboard = done
-            done += clipboard
-            ops_count += 2
-        elif clipboard > 0:
-            done += clipboard
-            ops_count += 1
-    
-    return ops_count
-
-# Testing the function
-if __name__ == "__main__":
-    n = 4
-    print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
-
-    n = 12
-    print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
+    ops, root = 0, 2
+    while root <= n:
+        # if n evenly divides by root
+        if n % root == 0:
+            # total even-divisions by root = total operations
+            ops += root
+            # set n to the remainder
+            n = n / root
+            # reduce root to find remaining smaller vals that evenly-divide n
+            root -= 1
+        # increment root until it evenly-divides n
+        root += 1
+    return ops
