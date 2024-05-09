@@ -46,4 +46,3 @@ if __name__ == "__main__":
 
     data3 = [229, 65, 127, 256]
     print(validUTF8(data3))  # False
-
