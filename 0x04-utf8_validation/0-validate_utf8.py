@@ -35,14 +35,3 @@ def validUTF8(data):
 
     # If num_bytes is not zero at the end, it means the data is incomplete
     return num_bytes == 0
-
-# Test cases
-if __name__ == "__main__":
-    data1 = [65]
-    print(validUTF8(data1))  # True
-
-    data2 = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
-    print(validUTF8(data2))  # True
-
-    data3 = [229, 65, 127, 256]
-    print(validUTF8(data3))  # False
